@@ -25,9 +25,9 @@ pub mod disciplinator {
         );
         
         // Validate that the mint is USDT
-        let mint_key = ctx.accounts.accepted_mint.key();
         #[cfg(not(feature = "test-mode"))]
         {
+            let mint_key = ctx.accounts.accepted_mint.key();
             let valid_mints = [
                 "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", // Official USDT
                 "Dn4noZ5jgGfkntzcQSUZ8czkreiZ1ForXYoV2H8Dm7S1", // Wormhole USDT
@@ -806,8 +806,7 @@ pub struct CreateChallenge<'info> {
 pub struct MarkSession<'info> {
     #[account(
         mut,
-        constraint = challenge.participant == participant.key() || 
-                     challenge.verifier == Some(signer.key())
+        constraint = challenge.verifier == Some(signer.key())
     )]
     pub challenge: Account<'info, Challenge>,
     
@@ -849,8 +848,7 @@ pub struct FinalizeChallenge<'info> {
     pub challenge: Account<'info, Challenge>,
     
     #[account(mut)]
-    /// CHECK: Participant
-    pub participant: AccountInfo<'info>,
+    pub participant: Signer<'info>,
     
     #[account(
         mut,

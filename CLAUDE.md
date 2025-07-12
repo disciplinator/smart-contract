@@ -30,9 +30,7 @@ anchor test                     # Full test suite (build + deploy + test)
 anchor deploy                   # Deploy to configured cluster
 
 # Specific test commands
-yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts              # All tests
-yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/disciplinator.ts     # Main test file
-yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/disciplinator.ts -g "pattern"  # Specific tests
+anchor test -- --features=test-mode
 ```
 
 ## Architecture Overview
@@ -117,9 +115,7 @@ Tests cover full workflow scenarios including setup, challenge lifecycle, and ed
 anchor test
 
 # Run specific test patterns
-yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/disciplinator.ts -g "initialize"
-yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/disciplinator.ts -g "challenge"
-yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/disciplinator.ts -g "reward"
+anchor test -- --features=test-mode
 ```
 
 ### Working with PDAs (Program Derived Addresses)

@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [test]
-startup = "anchor build --features test-mode"
+startup = "anchor build -- --features=test-mode"
 
 [programs.localnet]
 disciplinator = "Em4efpnH5X51Gr5hSKKWwJ4K2ktgcKDh5qgqr2w54WSH"
